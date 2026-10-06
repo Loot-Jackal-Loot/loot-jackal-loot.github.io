@@ -1,31 +1,228 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LOOT JACKAL LOOT!</title>
+<meta name="description" content="Steal as much as you can in just 30 SECONDS!">
+<link rel="canonical" href="https://loot-jackal-loot.github.io/">
+<meta name="theme-color" content="#0e1a30">
 
-  <meta http-equiv="refresh" content="0; url=https://frobby.itch.io/loot-jackal-loot">
-  <link rel="canonical" href="https://frobby.itch.io/loot-jackal-loot">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LOOT JACKAL LOOT!">
+<meta property="og:title" content="LOOT JACKAL LOOT!">
+<meta property="og:description" content="Steal as much as you can in just 30 SECONDS!">
+<meta property="og:url" content="https://loot-jackal-loot.github.io/">
+<meta property="og:image" content="https://loot-jackal-loot.github.io/assets/web/trailer-poster.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="Jackal and Sphyx next to the LOOT JACKAL LOOT! logo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LOOT JACKAL LOOT!">
+<meta name="twitter:description" content="Steal as much as you can in just 30 SECONDS!">
+<meta name="twitter:image" content="https://loot-jackal-loot.github.io/assets/web/trailer-poster.jpg">
 
-  <title>LOOT JACKAL, LOOT! by Frobby, Mangiapalazzo Studios, FedeDC512</title>
-  <meta name="description" content="Steal as much as you can in just 20 SECONDS!">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/web/icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/web/icon-192.png">
+<link rel="apple-touch-icon" href="assets/web/icon-180.png">
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="LOOT JACKAL, LOOT! by Frobby, Mangiapalazzo Studios, FedeDC512">
-  <meta property="og:description" content="Steal as much as you can in just 20 SECONDS!">
-  <meta property="og:image" content="https://img.itch.zone/aW1nLzI0NTc0MDg3LnBuZw==/original/Df1g16.png">
-  <meta property="og:url" content="https://loot-jackal-loot.github.io">
+<link rel="preload" href="/assets/fonts/SpaceMono-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="LOOT JACKAL, LOOT! by Frobby, Mangiapalazzo Studios, FedeDC512">
-  <meta name="twitter:description" content="Steal as much as you can in just 20 SECONDS!">
-  <meta name="twitter:image" content="https://img.itch.zone/aW1nLzI0NTc0MDg3LnBuZw==/original/Df1g16.png">
+<style>
+  /* Hero */
+  .hero { text-align: center; padding: 40px 0 40px; }
+  .hero h1 { margin: 0; }
+  .logo {
+    display: block;
+    width: min(100%, 540px);
+    height: auto;
+    margin: 0 auto;
+    filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.55));
+    animation: pop 700ms cubic-bezier(.16, 1, .3, 1) both;
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(.85) translateY(10px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .tagline {
+    margin: 24px 0 28px;
+    font: 24px/1.5 "M41 Lovebit", "Space Mono", monospace;
+    color: var(--gold);
+    /* thin black pixel outline, like the game's m41 text */
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 0 4px 0 var(--outline);
+  }
+  .get {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+  .play img { display: block; width: 260px; height: auto; }
+  .demo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    font-size: 15px;
+  }
+  .demo img { display: block; width: 104px; height: auto; }
+  .qr { display: none; }
+  .qr img {
+    display: block;
+    width: 168px;
+    height: 168px;
+    border: 3px solid var(--outline);
+    image-rendering: pixelated;
+  }
+  .qr figcaption { margin-top: 8px; font-size: 13px; color: var(--ink-2); text-align: center; }
+  @media (hover: hover) and (pointer: fine) and (min-width: 700px) {
+    .qr { display: block; margin: 0; }
+  }
 
-  <link rel="icon" type="image/png" href="favicon.png">
+  /* Trailer */
+  .trailer {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: 3px solid var(--outline);
+    box-shadow: 6px 6px 0 rgba(42, 21, 48, .85);
+    margin: 0 0 32px;
+    background: #000;
+  }
 
+  /* Screenshots: swipe strip on phones, 4-up grid on wider screens */
+  .shots {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 62%;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin: 22px -24px 0;
+    padding: 0 24px 8px;
+    list-style: none;
+  }
+  .shots li { scroll-snap-align: center; }
+  .shots img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 9 / 16;
+    border: 3px solid var(--outline);
+  }
+  @media (min-width: 640px) {
+    .shots {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(4, 1fr);
+      overflow: visible;
+      margin: 22px 0 0;
+      padding: 0;
+    }
+  }
+
+  /* Credits */
+  .credits { list-style: none; margin: 0; padding: 0; }
+  .credits li { padding: 10px 0; border-top: 1px solid rgba(185, 198, 214, .18); }
+  .credits li:first-child { border-top: 0; padding-top: 0; }
+  .credits .name { display: block; color: var(--ink); font-weight: 700; }
+  .credits a.name { color: var(--cyan); }
+  .credits a.name:hover { color: var(--gold); }
+  .credits .role { display: block; color: var(--ink-2); }
+
+  @media (max-width: 480px) {
+    .hero { padding-top: 28px; }
+    .tagline { font-size: 16px; }
+    .demo { flex-direction: column; gap: 8px; font-size: 13px; }
+    .shots { margin-left: -18px; margin-right: -18px; padding-left: 18px; padding-right: 18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo { animation: none; }
+  }
+</style>
 </head>
-
 <body>
-  <p>Redirecting...
-  <a href="https://frobby.itch.io/loot-jackal-loot">Click here if you are not redirected</a>.</p>
+
+<div class="wrap">
+
+  <header class="hero">
+    <h1><img class="logo" src="assets/logo.png" width="600" height="400" alt="LOOT JACKAL LOOT!"></h1>
+    <p class="tagline">Steal as much as you can in just 30 SECONDS!</p>
+    <div class="get">
+      <a class="play" href="https://play.google.com/store/apps/details?id=com.lootjackalloot">
+        <img src="assets/GetItOnGooglePlay_Badge_Web_color_English.png" width="478" height="142" alt="Get it on Google Play">
+      </a>
+      <figure class="qr">
+        <img src="assets/play-store-qr.png" width="343" height="343" alt="QR code to the Google Play page">
+        <figcaption>Scan with your phone</figcaption>
+      </figure>
+    </div>
+    <a class="demo" href="https://frobby.itch.io/loot-jackal-loot">
+      <img src="assets/badge-color.svg" width="740" height="228" alt="">
+      <span>Try the LITE demo in your browser</span>
+    </a>
+  </header>
+
+  <main>
+    <iframe class="trailer" width="1280" height="720" src="https://www.youtube.com/embed/XxHlkAwsv3k" title="LOOT JACKAL LOOT! | Official Release Trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    <section class="panel" aria-labelledby="story">
+      <h2 id="story"><img src="assets/header-story.png" width="257" height="214" alt="Story"></h2>
+      <p>The year is 30XX.</p>
+      <p>Two strange space-hunters are wandering around infinite space in search of abandoned spacecrafts, full of treasures to resell! Jackal, the arm. Sphyx, the mind.</p>
+      <p>But there's a twist! Every spacecraft is equipped with a safety system that will make it explode after 30 seconds.</p>
+      <p>Sphyx wouldn't be able to deactivate it in time!</p>
+      <p><strong>Steal as much as you can in just 30 SECONDS. LOOT JACKAL LOOT!</strong></p>
+    </section>
+
+    <section class="panel" aria-labelledby="gameplay">
+      <h2 id="gameplay"><img src="assets/header-gameplay.png" width="257" height="214" alt="Gameplay"></h2>
+      <p>Tap around the map to move Jackal, and use your fingers to complete different types of mini-games.</p>
+      <p>Every mini-game that you complete without failing increases your multiplier and makes you score EVEN MORE POINTS!</p>
+      <p>Challenge yourself or the entire world to make the best score that the galaxy has ever seen!</p>
+      <p><a href="leaderboard/">See the world leaderboard</a></p>
+      <ul class="shots" aria-label="Screenshots">
+        <li><img src="assets/web/screenshot-1.jpg" width="540" height="960" alt="Gameplay screenshot 1" loading="lazy"></li>
+        <li><img src="assets/web/screenshot-2.jpg" width="540" height="960" alt="Gameplay screenshot 2" loading="lazy"></li>
+        <li><img src="assets/web/screenshot-3.jpg" width="540" height="960" alt="Gameplay screenshot 3" loading="lazy"></li>
+        <li><img src="assets/web/screenshot-4.jpg" width="540" height="960" alt="Gameplay screenshot 4" loading="lazy"></li>
+      </ul>
+    </section>
+
+    <section class="panel" aria-labelledby="origin">
+      <h2 id="origin"><img src="assets/header-origin.png" width="257" height="81" alt="Origin"></h2>
+      <p>The game was originally developed for the 20 Second Game Jam 2025, staying 2nd in popularity for a long time!</p>
+      <p>In the <a href="https://itch.io/jam/20-second-game-jam-2026">20 Second Game Jam 2026</a>, LOOT JACKAL LOOT! was featured as one of the examples for future devs that attend the jam.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="credits">
+      <h2 id="credits"><img src="assets/header-credits.png" width="257" height="81" alt="Credits"></h2>
+      <ul class="credits">
+        <li><a class="name" href="https://avely.me/frobby">Salvatore Maria Miranda</a><span class="role">Creative Director, Game Designer &amp; Narrative Designer</span></li>
+        <li><span class="name">Vittorio Caldovino</span><span class="role">Pixel Artist</span></li>
+        <li><a class="name" href="https://thecubox.itch.io/">Cubox</a><span class="role">Pixel Artist</span></li>
+        <li><a class="name" href="https://federicoagnello.me/">Federico Agnello</a><span class="role">Developer &amp; UI/UX Designer</span></li>
+        <li><span class="name">Riccardo Sciacca</span><span class="role">Developer</span></li>
+        <li><span class="name">Antonino Macaluso</span><span class="role">Narrative Designer &amp; Voice Actor (Sphyx)</span></li>
+        <li><span class="name">Antonio Russo</span><span class="role">Character Designer &amp; Concept Artist</span></li>
+        <li><a class="name" href="https://www.instagram.com/cobeximan">Massimiliano Betti</a><span class="role">Composer &amp; Sound Designer</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <nav aria-label="More">
+      <a href="leaderboard/">Leaderboard</a>
+      <a href="privacy-policy/">Privacy Policy</a>
+      <a href="account-deletion/">Delete your account</a>
+    </nav>
+    <p>© 2026 Kappo Studio &amp; Mangiapalazzo Studios</p>
+    <p class="fonts">Fonts: <a href="assets/fonts/OFL.txt" title="Space Mono by Colophon Foundry, SIL Open Font License 1.1">Space Mono</a>, <a href="http://mfs.jp.org" title="M41 Lovebit by MFS/Miffies">M41 Lovebit</a></p>
+  </footer>
+
+</div>
+
 </body>
 </html>

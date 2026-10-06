@@ -1,0 +1,88 @@
+/* Shared style for every page on loot-jackal-loot.github.io.
+   Link it with <link rel="stylesheet" href="/assets/site.css">.
+   Paths below are relative to this file, so they work from any page. */
+
+@font-face {
+  font-family: "Space Mono";
+  src: url("fonts/SpaceMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url("fonts/SpaceMono-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "M41 Lovebit";
+  src: url("fonts/m41_lovebit.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --night: #0e1a30;
+  --panel: rgba(9, 16, 33, 0.78);
+  --outline: #2a1530;
+  --ink: #eef3f8;
+  --ink-2: #b9c6d6;
+  --gold: #ffc21a;
+  --orange: #ff8a00;
+  --cyan: #3bc9e8;
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--night); }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font: 17px/1.7 "Space Mono", ui-monospace, Menlo, Consolas, monospace;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Nebula: fixed layer, landscape or portrait file depending on the screen */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--night) url("web/nebula-landscape.jpg") center / cover no-repeat;
+}
+@media (orientation: portrait) {
+  body::before { background-image: url("web/nebula-portrait.jpg"); }
+}
+
+a { color: var(--cyan); text-underline-offset: 3px; }
+a:hover { color: var(--gold); }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+/* Panels */
+.panel {
+  background: var(--panel);
+  border: 3px solid var(--outline);
+  box-shadow: 6px 6px 0 rgba(42, 21, 48, .85);
+  padding: 28px 24px;
+  margin: 0 0 32px;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.panel h2 { margin: 0 0 16px; line-height: 0; }
+.panel h2 img { height: auto; max-width: 100%; }
+.panel p { margin: 0 0 14px; color: var(--ink-2); }
+.panel p:last-child { margin-bottom: 0; }
+.panel strong { color: var(--ink); }
+
+/* Footer */
+footer { padding: 8px 0 48px; text-align: center; }
+footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px; }
+footer p { margin: 16px 0 0; color: var(--ink-2); font-size: 13px; }
+footer .fonts { margin-top: 6px; font-size: 12px; opacity: .75; }
+
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  .panel { padding: 22px 18px; box-shadow: 4px 4px 0 rgba(42, 21, 48, .85); }
+}
